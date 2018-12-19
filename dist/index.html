@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZWT-EXT-EXAMPLE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <link rel="stylesheet" href="lib/css/mui.min.css">
+    <script src="lemix.min.js"></script>
+    <script src="lib/js/mui.min.js"></script>
+</head>
+<body>
+<ul class="mui-table-view">
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" id="camera">camera</a>
+    </li>
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" id="photograph">拍照demo</a>
+    </li>
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" id="cardrecord">打卡记录demo</a>
+    </li>
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" id="map">map</a>
+    </li>
+    <li class="mui-table-view-cell mui-collapse mui-active">
+        <a class="mui-navigate-right" href="#">ui</a>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" id="navigation">navigation</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" href="#">screen</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right" id="style">style</a>
+            </li>
+        </ul>
+    </li>
+    <li class="mui-table-view-cell mui-collapse">
+        <a class="mui-navigate-right">Net</a>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <!--<a class="mui-navigate-right" href="examples/net/http.html">http</a>-->
+                <a class="mui-navigate-right" id="http">http</a>
+            </li>
+
+        </ul>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    let camera = document.querySelector("#camera")
+    camera.addEventListener("click", function () {
+        $lemix.ui.navigation.push('relative', 'examples/image/camera.html')
+    })
+
+    let photograph = document.querySelector("#photograph")
+    photograph.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative', 'examples/image/photograph.html')
+    })
+
+    let cardrecord = document.querySelector("#cardrecord")
+    cardrecord.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative', 'examples/image/cardrecord.html')
+    })
+
+    let map = document.querySelector("#map")
+    map.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative','examples/map/map.html')
+    })
+
+    let navigation = document.querySelector("#navigation")
+    navigation.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative','examples/ui/navigation.html')
+    })
+
+    let style = document.querySelector("#style")
+    style.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative','examples/ui/style.html')
+    })
+
+    let http = document.querySelector("#http")
+    http.addEventListener("click",function () {
+        $lemix.ui.navigation.push('relative','examples/net/http.html')
+    })
+</script>
+</body>
+</html>
