@@ -9,7 +9,7 @@ const __ios__ = 'ios'
  * @param platform 平台名称：android / ios
  */
 let setPlatform = (platform) => {
-  _platform = platform
+    _platform = platform
 }
 
 /**
@@ -17,7 +17,7 @@ let setPlatform = (platform) => {
  * @returns {string} 平台名称：android / ios
  */
 let getPlatform = () => {
-  return _platform
+    return _platform
 }
 
 /**
@@ -26,20 +26,20 @@ let getPlatform = () => {
  * @param parameters
  */
 let sendMessage = (type, parameters, isSync) => {
-  let data = JSON.stringify({
-    type: type,
-    params: parameters,
-    sync: isSync
-  })
-  if (getPlatform() === __android__) {
-    // android消息发送
-    return window.__js_android__.message(data)
-  }
-  else if (getPlatform() === __ios__) {
-    // ios消息发送7
-    let result = window.prompt(data)
-    return result
-  }
+    let data = JSON.stringify({
+        type: type,
+        params: parameters,
+        sync: isSync
+    })
+    if (getPlatform() === __android__) {
+        // android消息发送
+        return window.__js_android__.message(data)
+    }
+    else if (getPlatform() === __ios__) {
+        // ios消息发送7
+        let result = window.prompt(data)
+        return result
+    }
 }
 
 /**
@@ -48,9 +48,9 @@ let sendMessage = (type, parameters, isSync) => {
  * @param fn
  */
 let saveCallback = (fn) => {
-  let uuid = createUUID()
-  _callbackObj[uuid] = fn
-  return uuid
+    let uuid = createUUID()
+    _callbackObj[uuid] = fn
+    return uuid
 }
 
 /**
@@ -59,9 +59,9 @@ let saveCallback = (fn) => {
  * @returns {*}
  */
 let loadCallback = function (uuid) {
-  let arr = Array.prototype.slice.call(arguments)
-  arr.splice(0, 1);
-  return _callbackObj[uuid].apply(window, arr)
+    let arr = Array.prototype.slice.call(arguments)
+    arr.splice(0, 1);
+    return _callbackObj[uuid].apply(window, arr)
 }
 
 /**
@@ -69,20 +69,20 @@ let loadCallback = function (uuid) {
  * @param uuid
  */
 let distoryCallback = (uuid) => {
-  delete _callbackObj[uuid]
+    delete _callbackObj[uuid]
 }
 
 /**
  * create uuid
  */
 let createUUID = (function (uuidRegEx, uuidReplacer) {
-  return function () {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
-  };
+    return function () {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
+    };
 })(/[xy]/g, function (c) {
-  var r = Math.random() * 16 | 0,
-    v = c == "x" ? r : (r & 3 | 8);
-  return v.toString(16);
+    var r = Math.random() * 16 | 0,
+        v = c == "x" ? r : (r & 3 | 8);
+    return v.toString(16);
 })
 
 /**
@@ -91,21 +91,21 @@ let createUUID = (function (uuidRegEx, uuidReplacer) {
  * @returns {*}
  */
 let handleConfig = (config) => {
-  for (let key in config) {
-    if (typeof config[key] === "function") {
-      config[key] = saveCallback(config[key])
+    for (let key in config) {
+        if (typeof config[key] === "function") {
+            config[key] = saveCallback(config[key])
+        }
     }
-  }
-  return config
+    return config
 }
 
 export default {
-  setPlatform,
-  getPlatform,
-  sendMessage,
-  saveCallback,
-  loadCallback,
-  distoryCallback,
-  createUUID,
-  handleConfig
+    setPlatform,
+    getPlatform,
+    sendMessage,
+    saveCallback,
+    loadCallback,
+    distoryCallback,
+    createUUID,
+    handleConfig
 }
